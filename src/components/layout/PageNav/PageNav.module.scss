@@ -1,0 +1,16 @@
+@import '../../../styles/settings.scss';
+
+.component {
+  padding: $base-size;
+
+  a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: $base-size * 2;
+    background-color: cadetblue;
+
+    &:hover {
+      background-color: chocolate;
+    }
+  }
+}
