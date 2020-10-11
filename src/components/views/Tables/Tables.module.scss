@@ -3,3 +3,11 @@
 .component {
   padding: $base-size;
 }
+
+.gridContainer {
+  padding: $base-size * 2;
+}
+.typo {
+  padding-bottom: $base-size * 3;
+  padding-top: $base-size;
+}

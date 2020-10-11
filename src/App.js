@@ -1,43 +1,82 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import Dashboard from './components/views/Dashboard/Dashboard';
 import Login from './components/views/Login/Login';
-import Tables from './components/views/Tables/Tables';
-import TablesEvent from './components/views/TablesEvent/TablesEvent';
-import TablesEventNew from './components/views/TablesEventNew/TablesEventNew';
-import TablesBooking from './components/views/TablesBooking/TablesBooking';
-import TablesBookingNew from './components/views/TablesBookingNew/TablesBookingNew';
 import Kitchen from './components/views/Kitchen/Kitchen';
+import Tables from './components/views/Tables/Tables';
+import TablesBooking from './components/views/TablesBooking/TablesBooking';
+import TablesEvent from './components/views/TablesEvent/TablesEvent';
 import Waiter from './components/views/Waiter/Waiter';
 import WaiterOrder from './components/views/WaiterOrder/WaiterOrder';
-import WaiterOrderNew from './components/views/WaiterOrderNew/WaiterOrderNew';
+
+//import TablesEventNew from './components/views/TablesEventNew/TablesEventNew';
+//import TablesBookingNew from './components/views/TablesBookingNew/TablesBookingNew';
+//import WaiterOrderNew from './components/views/WaiterOrderNew/WaiterOrderNew';
+import { StylesProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#2b4c6f' },
+    //secondary: { main: '#11cb5f' },
+  },
+});
+
+export const routes = [
+  {
+    path: '/',
+    component: Login, 
+  },
+  {
+    path: '/login',
+    component: Login, 
+  },
+  {
+    path: '/dashboard',
+    component: Dashboard, 
+  },
+  {
+    path: '/kitchen',
+    component: Kitchen, 
+  },
+  {
+    path: '/tables',
+    component: Tables, 
+  },
+  {
+    path: '/tables/booking/:id',
+    component: TablesBooking, 
+  },
+  {
+    path: '/tables/events/:id',
+    component: TablesEvent, 
+  },
+  {
+    path: '/waiter',
+    component: Waiter, 
+  },
+  {
+    path: '/waiter/order/:id',
+    component: WaiterOrder, 
+  },
+];
 
 function App() {
   return (
     <BrowserRouter>
-      <MainLayout>
-        <Switch>
-          {/* Mainview */}
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Login} />
-          <Route exact path={`${process.env.PUBLIC_URL}/Dashboard`} component={Dashboard} />
-          <Route exact path={`${process.env.PUBLIC_URL}/tables`} component={Tables} />
-          <Route exact path={`${process.env.PUBLIC_URL}/kitchen`} component={Kitchen} />
-          <Route exact path={`${process.env.PUBLIC_URL}/waiter`} component={Waiter} />
-          
-          {/* Subview */}
-          <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/new`} component={TablesBookingNew} />
-          <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/:id`} component={TablesBooking} />
-      
-          <Route exact path={`${process.env.PUBLIC_URL}/tables/events/new`} component={TablesEventNew} />
-          <Route exact path={`${process.env.PUBLIC_URL}/tables/events/:id`} component={TablesEvent} />
-      
-          <Route exact path={`${process.env.PUBLIC_URL}/waiter/order/new`} component={WaiterOrderNew} />
-          <Route exact path={`${process.env.PUBLIC_URL}/waiter/order/:id`} component={WaiterOrder} />
-      
-        </Switch>
-      </MainLayout>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <MainLayout>
+            <Switch>
+              {routes.map(route => (
+                <Route key={route.path} exact path={`${process.env.PUBLIC_URL}${route.path}`} component={route.component} />
+              ))}      
+            </Switch>
+          </MainLayout>
+        </ ThemeProvider>
+      </StylesProvider>
     </BrowserRouter>  
   );
 }

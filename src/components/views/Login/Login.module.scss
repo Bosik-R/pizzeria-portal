@@ -1,5 +1,25 @@
 @import '../../../styles/settings.scss';
 
 .component {
+  display: flex;
   padding: $base-size;
+  max-width: 800px;
+  min-height: 200px;
+  margin: 0 auto;
+  margin-top: $base-size * 5;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+  padding: $base-size;
+}
+.textField {
+  display: flex;
+  align-items: center;
+  justify-items: space-around;
 }

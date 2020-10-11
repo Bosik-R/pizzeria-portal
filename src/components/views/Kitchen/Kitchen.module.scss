@@ -3,3 +3,17 @@
 .component {
   padding: $base-size;
 }
+
+.tableCellHead{
+  position: relative;
+  &::after {
+    content: '';
+    padding-left: 20px;
+    //height: 90%;
+    right: 0;
+    top: 5%;
+    bottom: 5%;
+    position: absolute;
+    border-right: .5px solid lightgray;
+  }
+}

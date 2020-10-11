@@ -1,4 +1,4 @@
-/* global require, process */
+/* global */
 
 const fs = require('fs');
 const path = require('path');

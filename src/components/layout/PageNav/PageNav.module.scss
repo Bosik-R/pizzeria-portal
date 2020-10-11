@@ -1,16 +1,10 @@
 @import '../../../styles/settings.scss';
 
 .component {
-  padding: $base-size;
+  padding: $base-size 0;
+  margin-left: auto;
+}
 
-  a {
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: $base-size * 2;
-    background-color: cadetblue;
-
-    &:hover {
-      background-color: chocolate;
-    }
-  }
+.link {
+  color: inherit;
 }
