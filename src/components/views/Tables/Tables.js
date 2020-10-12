@@ -123,7 +123,6 @@ const numberToHour = function(number){
 
 const filterStore = (time) => {
   const data = store.filter(s => s.hour === numberToHour(time));
-  console.log(data);
   return data.length ? data[0].table : null;
 };
 

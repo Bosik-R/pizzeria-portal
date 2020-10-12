@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Dashboard.module.scss';
-import CanvasJSReact from '../../../assets/canvasjs.react';
+import CanvasJSReact from './Chart';
 import Paper from '@material-ui/core/Paper';
 import { Button, Typography } from '@material-ui/core';
 import Table from '@material-ui/core/Table';

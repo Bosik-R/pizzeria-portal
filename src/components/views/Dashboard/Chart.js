@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-mixed-spaces-and-tabs */
-var React = require('react');
-var CanvasJS = require('./canvasjs.min');
+const React = require('react');
+let CanvasJS = require('./Chart.min');
 CanvasJS = CanvasJS.Chart ? CanvasJS : window.CanvasJS;
 
 class CanvasJSChart extends React.Component {

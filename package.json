@@ -51,6 +51,7 @@
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.20.0",
     "chart.js": "^2.9.3",
     "date-fns": "^2.16.1",
     "enzyme": "^3.11.0",
@@ -65,7 +66,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-test-renderer": "^16.13.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.2.0",
