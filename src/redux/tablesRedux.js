@@ -13,22 +13,39 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const FETCH_UPDATE = createActionName('FETCH_UPDATE');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const fetchUpdate = payload => ({ payload, type: FETCH_UPDATE });
+
 
 /* thunk creators */
 export const fetchFromAPI = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchStarted());
-    console.log(getState);
     Axios
       .get(`${api.url}/${api.tables}`)
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const updateAPI = (id, status) => {
+  return (dispatch) => {
+    Axios.all([
+      Axios.patch(`${api.url}/${api.tables}/${id}`, {'status': `${status}`}),
+      Axios.get(`${api.url}/${api.tables}`),
+    ])
+      .then(res => {
+        dispatch(fetchSuccess(res[1].data));
+      })     
       .catch(err => {
         dispatch(fetchError(err.message || true));
       });

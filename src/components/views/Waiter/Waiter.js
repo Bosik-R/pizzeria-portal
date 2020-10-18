@@ -24,45 +24,46 @@ class Waiter extends React.Component {
         PropTypes.string,
       ]),
     }),
+    updateTables: PropTypes.func,
   }
 
   componentDidMount(){
     const { fetchTables } = this.props;
     fetchTables();
   }
-
-  renderActions(status){
+  
+  renderActions(id, status){
     switch (status) {
       case 'free':
         return (
           <Grid container spacing={1}>
             <Grid item>
-              <Button variant='contained' color='primary'>thinking</Button>
+              <Button onClick={() => this.props.updateTables(id, 'thinking')} variant='contained' color='primary'>thinking</Button>
             </Grid>
             <Grid item>
-              <Button variant='contained' color='primary'>new order</Button>
+              <Button onClick={() => this.props.updateTables(id, 'ordered')} variant='contained' color='primary'>new order</Button>
             </Grid>
           </Grid>
         );
       case 'thinking':
         return (
-          <Button variant='contained' color='primary'>new order</Button>
+          <Button onClick={() => this.props.updateTables(id, 'ordered')} variant='contained' color='primary'>new order</Button>
         );
       case 'ordered':
         return (
-          <Button variant='contained' color='primary'>prepared</Button>
+          <Button onClick={() => this.props.updateTables(id, 'prepared')} variant='contained' color='primary'>prepared</Button>
         );
       case 'prepared':
         return (
-          <Button variant='contained' color='primary'>delivered</Button>
+          <Button onClick={() => this.props.updateTables(id, 'delivered')} variant='contained' color='primary'>delivered</Button>
         );
       case 'delivered':
         return (
-          <Button variant='contained' color='primary'>paid</Button>
+          <Button onClick={() => this.props.updateTables(id, 'paid')} variant='contained' color='primary'>paid</Button>
         );
       case 'paid':
         return (
-          <Button variant='contained' color='primary'>free</Button>
+          <Button onClick={() => this.props.updateTables(id, 'free')} variant='contained' color='primary'>free</Button>
         );
       default:
         return null;
@@ -114,7 +115,7 @@ class Waiter extends React.Component {
                     )}
                   </TableCell>
                   <TableCell>
-                    {this.renderActions(row.status)}
+                    {this.renderActions(row.id, row.status)}
                   </TableCell>
                 </TableRow>
               ))}
